@@ -6,6 +6,7 @@ def talker():
     pub = rospy.Publisher('cmd_ctrl', Posvel, queue_size=10)
     rospy.init_node('posvel_publisher', anonymous=True)
     rate = rospy.Rate(10)  # 10 Hz
+    
     while not rospy.is_shutdown():
         msg = Posvel()
         msg.x = 1.0
