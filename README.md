@@ -22,7 +22,9 @@ catkin_make
 
 ### 7. 运行节点（在source后）
 source devel/setup.bash
+
 rosrun posvel_control posvel_publisher.py  # 终端1
+
 rosrun posvel_control posvel_subscriber.py  # 终端2
 
 # 🛠 四、常见问题解决（他人可能遇到的）
