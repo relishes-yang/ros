@@ -58,7 +58,8 @@ roslaunch turtle_formation（包） turtle_formation.launch（启动文件）
 原因：未source环境
 
 解决：
-```source ~/catkin_ws/devel/setup.bash
+```
+source ~/catkin_ws/devel/setup.bash
 ```
 
 ### 问题2：Package not found: posvel_control
