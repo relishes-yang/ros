@@ -4,6 +4,8 @@
 ## 📁 仓库结构
 ros/ # 仓库根目录 (ROS 功能包集合)
 
+├── handwriting_urdf/ # 机器人建模与仿真
+
 ├── posvel_control/ # 自定义话题通信功能包
 
 ├── turtle_formation/ # 多海龟编队控制功能包
@@ -16,6 +18,7 @@ ros/ # 仓库根目录 (ROS 功能包集合)
 ## 📦 已包含功能包
 | 功能包名称 | 功能描述 | 运行命令 |
 | :--- | :--- | :--- |
+| [handwriting_urdf](./handwriting_urdf/) | 机器人建模与仿真 | `roslaunch mbot_description display_mobile_manipulator.launch` |
 | [posvel_control](./posvel_control/) | 自定义位置-速度消息类型，实现ROS话题发布/订阅通信 | `rosrun posvel_control posvel_publisher.py`<br>`rosrun posvel_control posvel_subscriber.py` |
 | [turtle_formation](./turtle_formation/) | 1只领航龟(键盘控制) + 2只跟随龟，实现三角形自动编队 | `roslaunch turtle_formation turtle_formation.launch` |
 | [robot_dh_tf](./robot_dh_tf/) | 六自由度机器人改进DH参数计算，TF坐标变换广播+RViz可视化 | `rosrun robot_dh_tf robot_tf_publisher.py`<br>`rviz` |
@@ -66,6 +69,12 @@ rosrun robot_dh_tf robot_tf_publisher.py
 # 终端2 打开RViz可视化
 rviz
 ```
+### 示例 4：机器人建模与仿真
+```
+roslaunch mbot_description display_mobile_manipulator.launch
+
+```
+
 
 
 
