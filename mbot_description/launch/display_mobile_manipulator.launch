@@ -1,0 +1,16 @@
+<launch>
+    <!-- 设置是否使用仿真时间（一般RViz显示用false） -->
+    <param name="use_sim_time" value="false"/>
+
+    <!-- 加载机器人模型参数（直接加载URDF文本，无需xacro） -->
+    <param name="robot_description" textfile="$(find mbot_description)/urdf/mobile_manipulator.urdf"/>
+
+    <!-- 启动 robot_state_publisher，将URDF中的TF和关节状态发布出去 -->
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+
+    <!-- 启动 joint_state_publisher_gui，提供滑动条来手动调节关节角度（方便观察机械臂运动） -->
+    <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui"/>
+
+    <!-- 启动 RViz，加载一个预置的配置文件（可先不指定，手动添加RobotModel） -->
+    <node name="rviz" pkg="rviz" type="rviz" />
+</launch>
