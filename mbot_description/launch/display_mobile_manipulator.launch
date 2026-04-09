@@ -11,6 +11,7 @@
     <!-- 启动 joint_state_publisher_gui，提供滑动条来手动调节关节角度（方便观察机械臂运动） -->
     <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui"/>
 
+
     <!-- 启动 RViz，加载一个预置的配置文件（可先不指定，手动添加RobotModel） -->
     <node name="rviz" pkg="rviz" type="rviz" />
 </launch>
