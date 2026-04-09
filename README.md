@@ -1,17 +1,29 @@
-# 📂ROS学习与作业仓库
-本仓库用于存放ROS相关课程作业与功能包Demo。
+# 📂 ROS学习与作业仓库
+本仓库用于存放ROS1 (Noetic) 课程作业、功能包Demo与实验源码，包含机器人坐标变换、海龟仿真、话题通信等实战项目，遵循ROS标准工作空间规范，可直接编译运行。
 
-## 已包含功能包 📦
+## 📁 仓库结构
+ros/ # 仓库根目录 (ROS 功能包集合)
 
+├── posvel_control/ # 自定义话题通信功能包
+
+├── turtle_formation/ # 多海龟编队控制功能包
+
+├── robot_dh_tf/ # 六自由度机器人 DH 参数 TF 发布
+
+└── README.md # 仓库说明文档
+
+
+## 📦 已包含功能包
 | 功能包名称 | 功能描述 | 运行命令 |
-|-----------|----------|----------|
-| [posvel_control](./posvel_control/) | 自定义位置-速度消息类型，实现 Python 节点通信 | `rosrun posvel_control posvel_publisher.py  # 终端1             rosrun posvel_control posvel_subscriber.py  # 终端2`  |
-| [turtle_formation](./turtle_formation/) | 1 只领航龟（键盘控制）+ 2 只跟随龟，保持三角形编队 | `roslaunch turtle_formation turtle_formation.launch` |
+| :--- | :--- | :--- |
+| [posvel_control](./posvel_control/) | 自定义位置-速度消息类型，实现ROS话题发布/订阅通信 | `rosrun posvel_control posvel_publisher.py`<br>`rosrun posvel_control posvel_subscriber.py` |
+| [turtle_formation](./turtle_formation/) | 1只领航龟(键盘控制) + 2只跟随龟，实现三角形自动编队 | `roslaunch turtle_formation turtle_formation.launch` |
+| [robot_dh_tf](./robot_dh_tf/) | 六自由度机器人改进DH参数计算，TF坐标变换广播+RViz可视化 | `rosrun robot_dh_tf robot_tf_publisher.py`<br>`rviz` |
 
-## 快速开始 🚀
-
-### 1. 创建ROS工作空间（如果尚未创建）
-```mkdir -p ~/catkin_ws/src
+## 🚀 快速开始
+### 1. 准备ROS工作空间
+```bash
+mkdir -p ~/catkin_ws/src
 cd ~/catkin_ws/src
 ```
 
@@ -19,37 +31,42 @@ cd ~/catkin_ws/src
 ```bash
 git clone https://github.com/relishes-yang/ros.git
 ```
-### 3. 重命名目录(可选)（你取个名字XXXX）
-```
-mv ros_posvel_control XXXX
-```
 
-### 4. 返回工作空间根目录
+### 3. 安装依赖并编译
 ```
 cd ~/catkin_ws
-```
-
-### 5. 安装ROS依赖（关键！）
-```
 rosdep install --from-paths src --ignore-src -r -y
-```
-### 6. 编译与环境配置
-```
 catkin_make
 source devel/setup.bash
-(或者)
-source ~/catkin_ws/devel/setup.bash
 ```
 
-### 7. 运行节点（在source后）
+### 4. 配置环境永久生效（可选）
 ```
-示例：发布者-订阅者
-source devel/setup.bash
-rosrun posvel_control posvel_publisher.py  # 终端1
-rosrun posvel_control posvel_subscriber.py  # 终端2
-示例：（以乌龟编队为例）
-roslaunch turtle_formation（包） turtle_formation.launch（启动文件）
+echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
+source ~/.bashrc
 ```
+
+## 🎯 功能包运行示例
+### 示例 1：位置 - 速度话题通信
+```
+# 终端1
+rosrun posvel_control posvel_publisher.py
+# 终端2
+rosrun posvel_control posvel_subscriber.py
+```
+### 示例 2：多海龟自动编队
+```
+roslaunch turtle_formation turtle_formation.launch
+```
+
+### 示例 3：机器人 DH 参数 TF 可视化
+```
+# 终端1 启动TF发布节点
+rosrun robot_dh_tf robot_tf_publisher.py
+# 终端2 打开RViz可视化
+rviz
+```
+
 
 
 # 🛠 四、常见问题解决（他人可能遇到的）
@@ -62,22 +79,20 @@ roslaunch turtle_formation（包） turtle_formation.launch（启动文件）
 source ~/catkin_ws/devel/setup.bash
 ```
 
-### 问题2：Package not found: posvel_control
-原因：未重命名目录
-
-解决：
-```
-cd ~/catkin_ws/src
-mv github的功能包 posvel_control
-catkin_make  # 重新编译
-```
-
-### 问题3：ImportError: No module named 'posvel_control'
-原因：未安装依赖
+### 问题2：Package not found
+原因：未编译工作空间 / 环境未生效
 
 解决：
 ```
 cd ~/catkin_ws
-rosdep install --from-paths src --ignore-src -r -y
 catkin_make
+source devel/setup.bash
+```
+
+### 问题3：Python 脚本无法运行
+原因：脚本无执行权限
+
+解决：
+```
+chmod +x ~/catkin_ws/src/ros/功能包名/scripts/xxx.py
 ```
