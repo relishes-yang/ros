@@ -8,6 +8,7 @@
 	<!-- 运行robot_state_publisher节点，发布tf  -->
 	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
 	
+	
 	<!-- 运行rviz可视化界面 -->
 	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find marm_description)/config/marm_urdf.rviz" required="true" />
 </launch>
