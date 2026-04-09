@@ -12,6 +12,7 @@ add_message_files(
   Posvel.msg
 )
 
+
 catkin_python_setup()  # ✅ 必须在 generate_messages 之后
 
 generate_messages(  # ✅ 必须在 catkin_python_setup 之前
